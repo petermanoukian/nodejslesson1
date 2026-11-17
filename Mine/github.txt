@@ -1,0 +1,29 @@
+echo "# nodejslesson1" >> README.md
+git init
+git add .
+
+# 1. Create the .gitignore file and ignore node_modules
+echo node_modules/ > .gitignore
+
+# 2. Remove node_modules from Git tracking (keeps them safe on disk)
+git rm -r --cached node_modules
+
+# 3. Re-add everything else clean
+git add .
+
+
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/petermanoukian/nodejslesson1.git
+git push -u origin main
+
+
+
+git rm -r --cached .
+
+
+# 1. Force remove node_modules from the entire git history
+git filter-branch --force --index-filter "git rm --cached --ignore-unmatch -r node_modules" --prune-empty HEAD
+
+# 2. Force push the cleaned history to GitHub
+git push origin main --force
